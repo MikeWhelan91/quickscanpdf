@@ -1,0 +1,71 @@
+# --- Node / tooling ---
+node_modules/
+.npmrc.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+.cache/
+.merlin
+*.tsbuildinfo
+
+# --- Expo / Metro bundler ---
+.expo/
+.expo-shared/
+.metro-cache/
+web-build/
+dist/
+build/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p8
+*.p12
+*.cer
+*.mobileprovision
+
+# --- Android (Gradle) ---
+android/.gradle/
+android/.idea/
+android/*.iml
+android/local.properties
+android/build/
+android/app/build/
+android/app/release/
+*.apk
+*.aab
+
+# --- iOS (Xcode/CocoaPods) ---
+ios/Pods/
+ios/build/
+ios/DerivedData/
+ios/**/xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# --- OS cruft ---
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# --- Tests / coverage (optional) ---
+coverage/
+.junit/
+
+# --- Editor / IDE ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp

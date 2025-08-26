@@ -1,0 +1,1 @@
+export function nanoid(size=12){const a='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-';let id='';const co=globalThis.crypto as any;const b=new Uint8Array(size);if(co&&co.getRandomValues){co.getRandomValues(b);for(let i=0;i<size;i++)id+=a[b[i]%a.length];}else{for(let i=0;i<size;i++)id+=a[Math.floor(Math.random()*a.length)];}return id;}
