@@ -1,5 +1,5 @@
 {
-  "name": "scanlite",
+  "name": "quickscanpdf",
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
@@ -9,6 +9,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web"
   },
+  "description": "QuickScan PDF – fast document scanner and PDF exporter",
   "dependencies": {
     "expo": "53.0.22",
     "react": "19.0.0",

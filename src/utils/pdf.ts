@@ -3,12 +3,17 @@ import * as FileSystem from 'expo-file-system';
 
 /** Build a multi-page A4 PDF; mild grayscale/contrast for a "scan" look. */
 export async function imagesToPdf(imageUris: string[]): Promise<string> {
-  const pagesHtml = imageUris.map(
-    (uri) => `
+  const pagesHtml = await Promise.all(
+    imageUris.map(async (uri) => {
+      const base64 = await FileSystem.readAsStringAsync(uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      return `
       <div class="page">
-        <img src="${uri}" />
-      </div>`
-  ).join('\n');
+        <img src="data:image/jpeg;base64,${base64}" />
+      </div>`;
+    })
+  );
 
   const html = `<!doctype html>
   <html>
@@ -28,12 +33,12 @@ export async function imagesToPdf(imageUris: string[]): Promise<string> {
       </style>
     </head>
     <body>
-      ${pagesHtml}
+      ${pagesHtml.join('\n')}
     </body>
   </html>`;
 
   const { uri } = await Print.printToFileAsync({ html });
-  const dest = FileSystem.documentDirectory + `scanlite_${Date.now()}.pdf`;
+  const dest = FileSystem.documentDirectory + `quickscanpdf_${Date.now()}.pdf`;
   await FileSystem.copyAsync({ from: uri, to: dest });
   return dest;
 }

@@ -1,1 +1,99 @@
-import React,{useEffect}from'react';import{View,Text,StyleSheet,FlatList,Pressable,Linking}from'react-native';import{Button}from'../components/Button';import{colors}from'../theme/colors';import{TopBar}from'../components/TopBar';import{usePages}from'../store/PagesContext';import{useScansStore}from'../store/ScansStore';export default function HomeScreen({navigation}:any){const{pages}=usePages();const{scans,refresh}=useScansStore();useEffect(()=>{refresh();},[]);return(<View style={styles.container}><TopBar title='ScanLite'/><View style={styles.body}><Text style={styles.title}>Scan documents fast</Text><Text style={styles.subtitle}>New scan → auto-crop to A4 → review → PDF</Text><View style={{height:24}}/><Button title='New Scan' onPress={()=>navigation.navigate('Scan')}/><View style={{height:12}}/><Button variant='ghost' title={`Open Review (${pages.length})`} onPress={()=>navigation.navigate('Review')}/></View><View style={styles.listWrap}><Text style={styles.section}>Recent PDFs</Text>{scans.length===0?(<Text style={styles.empty}>No saved PDFs yet.</Text>):(<FlatList contentContainerStyle={{padding:16}} data={scans} keyExtractor={(s)=>s.id} renderItem={({item})=>(<Pressable style={styles.item} onPress={()=>Linking.openURL(item.pdfUri)}><Text style={styles.itemTitle}>{item.name}</Text><Text style={styles.itemSub}>{new Date(item.createdAt).toLocaleString()} • {item.pages} page{item.pages!==1?'s':''}</Text></Pressable>)}/>)}</View></View>);}const styles=StyleSheet.create({container:{flex:1,backgroundColor:colors.bg},body:{alignItems:'center',justifyContent:'center',padding:24},title:{color:colors.text,fontSize:22,fontWeight:'800',letterSpacing:0.3},subtitle:{color:colors.subtext,fontSize:13,marginTop:6,textAlign:'center'},listWrap:{flex:1},section:{color:colors.text,fontWeight:'700',paddingHorizontal:16,paddingTop:8},empty:{color:colors.subtext,paddingHorizontal:16,paddingTop:6},item:{backgroundColor:colors.card,borderColor:colors.border,borderWidth:1,marginBottom:10,borderRadius:12,padding:12},itemTitle:{color:colors.text,fontWeight:'700'},itemSub:{color:colors.subtext,marginTop:4}});
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList, Pressable, Linking } from 'react-native';
+import { Button } from '../components/Button';
+import { colors } from '../theme/colors';
+import { TopBar } from '../components/TopBar';
+import { usePages } from '../store/PagesContext';
+import { useScansStore } from '../store/ScansStore';
+
+export default function HomeScreen({ navigation }: any) {
+  const { pages } = usePages();
+  const { scans, refresh } = useScansStore();
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <TopBar title="QuickScan PDF" />
+      <View style={styles.body}>
+        <Text style={styles.title}>Scan documents fast</Text>
+        <Text style={styles.subtitle}>New scan → auto-crop to A4 → review → PDF</Text>
+        <View style={{ height: 24 }} />
+        <Button title="New Scan" onPress={() => navigation.navigate('Scan')} />
+        <View style={{ height: 12 }} />
+        <Button
+          variant="ghost"
+          title={`Open Review (${pages.length})`}
+          onPress={() => navigation.navigate('Review')}
+        />
+      </View>
+
+      <View style={styles.listWrap}>
+        <Text style={styles.section}>Recent PDFs</Text>
+        {scans.length === 0 ? (
+          <Text style={styles.empty}>No saved PDFs yet.</Text>
+        ) : (
+          <FlatList
+            contentContainerStyle={{ padding: 16 }}
+            data={scans}
+            keyExtractor={(s) => s.id}
+            renderItem={({ item }) => (
+              <Pressable
+                style={styles.item}
+                onPress={() => Linking.openURL(item.pdfUri)}
+              >
+                <Text style={styles.itemTitle}>{item.name}</Text>
+                <Text style={styles.itemSub}>
+                  {new Date(item.createdAt).toLocaleString()} • {item.pages} page
+                  {item.pages !== 1 ? 's' : ''}
+                </Text>
+              </Pressable>
+            )}
+          />
+        )}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: colors.bg },
+  body: { alignItems: 'center', justifyContent: 'center', padding: 24 },
+  title: {
+    color: colors.text,
+    fontSize: 22,
+    fontWeight: '800',
+    letterSpacing: 0.3,
+  },
+  subtitle: {
+    color: colors.subtext,
+    fontSize: 13,
+    marginTop: 6,
+    textAlign: 'center',
+  },
+  listWrap: { flex: 1 },
+  section: {
+    color: colors.text,
+    fontWeight: '700',
+    paddingHorizontal: 16,
+    paddingTop: 8,
+  },
+  empty: {
+    color: colors.subtext,
+    paddingHorizontal: 16,
+    paddingTop: 6,
+  },
+  item: {
+    backgroundColor: colors.card,
+    borderColor: colors.border,
+    borderWidth: 1,
+    marginBottom: 10,
+    borderRadius: 12,
+    padding: 12,
+  },
+  itemTitle: { color: colors.text, fontWeight: '700' },
+  itemSub: { color: colors.subtext, marginTop: 4 },
+});
+

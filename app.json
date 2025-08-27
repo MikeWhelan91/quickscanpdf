@@ -1,9 +1,10 @@
 {
   "expo": {
-    "name": "ScanLite",
-    "slug": "scanlite",
-    "scheme": "scanlite",
+    "name": "QuickScan PDF",
+    "slug": "quickscan-pdf",
+    "scheme": "quickscanpdf",
     "version": "1.0.0",
+    "description": "QuickScan PDF – scan documents to clean, grayscale PDFs",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

@@ -64,7 +64,12 @@ export default function ScannerScreen({ navigation }: any) {
       <TopBar title="Capture — New Scan" />
       <View style={styles.cameraWrap}>
         {/* SDK 53+: CameraView with facing='back' */}
-        <CameraView ref={camRef} style={styles.camera} facing="back" />
+        <CameraView
+          ref={camRef}
+          style={styles.camera}
+          facing="back"
+          autofocus="on"
+        />
       </View>
       <View style={styles.controls}>
         <Button title="Capture" onPress={takePicture} />
