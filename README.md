@@ -1,5 +1,8 @@
 
-# ScanLite (Expo SDK 51, pinned deps)
+# QuickScan PDF (Expo SDK 51, pinned deps)
+
+Fast, private document scanner that auto‑crops pages and exports clean, grayscale PDFs.
+
 - Node **18 or 20** required.
 - No config-plugins in app.json (prevents expo-print plugin errors).
 

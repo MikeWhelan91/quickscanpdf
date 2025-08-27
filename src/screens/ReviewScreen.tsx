@@ -42,7 +42,7 @@ const handleExport = async () => {
       if (await Sharing.isAvailableAsync()) {
         await Sharing.shareAsync(pdf);
       } else {
-        Alert.alert("Saved", `PDF saved to: ${"${pdf}"}`);
+        Alert.alert("Saved", `PDF saved to: ${pdf}`);
       }
       navigation.navigate("Home");
     } catch {
