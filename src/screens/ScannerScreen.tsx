@@ -70,6 +70,10 @@ export default function ScannerScreen({ navigation }: any) {
           facing="back"
           autofocus="on"
         />
+        {/* Live overlay to show auto‑crop bounds */}
+        <View pointerEvents="none" style={styles.overlay}>
+          <View style={styles.cropGuide} />
+        </View>
       </View>
       <View style={styles.controls}>
         <Button title="Capture" onPress={takePicture} />
@@ -100,6 +104,23 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   camera: { flex: 1 },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cropGuide: {
+    borderWidth: 2,
+    borderColor: "rgba(255,255,255,0.8)",
+    width: "80%",
+    aspectRatio: 1 / 1.4142,
+    borderStyle: "dashed",
+    borderRadius: 8,
+  },
   controls: {
     padding: 16,
     borderTopWidth: 1,

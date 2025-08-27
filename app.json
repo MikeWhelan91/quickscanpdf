@@ -4,7 +4,7 @@
     "slug": "quickscan-pdf",
     "scheme": "quickscanpdf",
     "version": "1.0.0",
-    "description": "QuickScan PDF – scan documents to clean, grayscale PDFs",
+    "description": "QuickScan PDF – scan documents with live auto-crop and realistic scanned-look previews for clean PDFs",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
